@@ -1,0 +1,52 @@
+﻿# Mise à jour fav, like,... Sur un poste spécifique.Concat. des IDs des likers
+UPDATE socialac_timeline SET `favorites`= CONCAT(`favorites`,'8,9,10,11') WHERE id='xx';
+UPDATE socialac_timeline SET `likes`= CONCAT(`likes`,'35,40,48') WHERE id='xx';
+
+# Ajout d'une clé étrangère
+ALTER TABLE socialac_yac_tips
+ADD FOREIGN KEY (`tips_id`) REFERENCES socialac_yac_timeline(`id`);
+
+# Recherche Full text(http://dev.mysql.com/doc/refman/5.0/fr/fulltext-search.html)
+SELECT * FROM articles WHERE MATCH (title,body) AGAINST ('database');
+
+# Générer une clé aléatoire
+$key = md5(uniqid(str_shuffle("abcdefghijklmonpqrstuvwxyz")));
+$key_bis = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890'),0,33);
+
+# Générer un pwd
+	function genPass($length = 8) {
+		 //max length = 32 characters
+		return substr ( md5 ( uniqid ( rand (), true ) ), 0, $length );
+	}
+
+# Semaine prochaine
+echo 'Semaine prochaine : '. date('Y-m-d', strtotime('+1 week')) ."\n";
+
+# Delete avec fadeout
+$(".tag-element-del").live('click', function() {
+	$(this).parent().fadeOut(500, function () {
+		$(this).parent().remove();
+	});
+});
+
+# Retourner les doublons d'un tableau
+	/**
+	 * 
+	 * Retourne les doublons d'un tableau
+	 * @param Array $array
+	 * @return mixed Array | Bool
+	 */
+	function getArrayDoublon($array) {
+		if (! is_array ( $array )) {
+			return false;
+		}
+		$r_valeur = Array ();
+		$array_unique = array_unique ( $array );
+		if (count ( $array ) - count ( $array_unique )) {
+			for($i = 0; $i < count ( $array ); $i ++) {
+				if (! array_key_exists ( $i, $array_unique ))
+					$r_valeur [] = $array [$i];
+			}
+		}
+		return array_values ( array_unique ( $r_valeur ) );
+	}

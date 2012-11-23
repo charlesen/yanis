@@ -1,0 +1,597 @@
+/* 
+    Document   : xtrem
+    Created on : 1 déc. 2011, 14:24:51
+    Author     : Charles EDOU NZE <charles at charlesen.fr>
+    Description: Main Stylesheet :)
+*/
+/* Override some defaults */
+html,body {
+	background-color: #c9dbe9; /*#eee*/
+	background: -webkit-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+	background: -linear-gradient(top, #c9dbe9 0%, #fff 100%);
+	background: -moz-linear-gradient(top, #c9dbe9 0%, #fff 100%);
+}
+
+body {
+	padding-top: 40px;
+	/* 40px to make the container go all the way to the bottom of the navbar */
+}
+
+.page-header h1 {
+	font-size: 2em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+input:required+label::after {
+	content: "*";
+}
+
+span {
+	color: #777;/*#468847*/
+	font-weight: bolder;
+}
+
+a:hover,a:focus {
+	text-decoration: none;
+}
+
+.container>footer p {
+	text-align: center; /* center align it with the container */
+}
+
+.container {
+	width: 68%;
+	margin: 0 auto;
+}
+
+.navbar .nav {
+	margin-left: 4.65%;
+}
+
+p.help-block,div.help-block {
+	font-size: 0.85em;
+	line-height: none;
+	margin-top: 0px;
+}
+
+/* The white background content wrapper */
+.container>.content {
+	background-color: #fff;
+	padding: 20px;
+	margin: 0 -20px;
+	/* negative indent the amount of the padding to maintain the grid system */
+	-webkit-border-radius: 0 0 6px 6px;
+	-moz-border-radius: 0 0 6px 6px;
+	border-radius: 0 0 6px 6px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+}
+
+/* Page header tweaks */
+.page-header {
+	background-color: #f5f5f5;
+	padding: 20px 20px 10px;
+	margin: -20px -20px 20px;
+}
+
+/* Styles you shouldn't keep as they are for displaying this base example only */
+.content .span10,.content .span4 {
+	min-height: 500px;
+}
+
+/* Give a quick and non-cross-browser friendly divider */
+.content .span4 {
+	margin-left: 0;
+	padding-left: 19px;
+	border-left: 1px solid #eee;
+}
+
+.navbar .btn {
+	border: 0;
+}
+
+.btn-more {
+	text-align: center;
+	margin: 1em 0px 1em 0px;
+}
+
+.btn-more a {
+	width: 95%;
+}
+
+.navbar .brand {
+	color: #333;
+	font-weight: bold;
+}
+
+.navbar-inner {
+	background: url('../images/bg-header.png');
+	color: #333;
+}
+
+.label-info {
+	background-color: #2E75C3;
+}
+
+.dropdown-menu input {
+	font-size: 13px;
+	height: 18px;
+}
+
+.form-horizontal input {
+	height: 30px;
+	font-size: 16px;
+}
+
+.form-horizontal .control-group {
+	margin-bottom: 12px;
+}
+
+.front-signup h3 {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 6px;
+	/**text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);**/
+}
+
+.front-signup h3 span {
+	font-weight: 300;
+}
+
+.hero-unit {
+	padding: 30px;
+	padding-top: 10px;
+}
+
+.navbar .nav li a:focus,.navbar .nav li a:hover {
+	color: #333;
+}
+
+.navbar .nav li.active a:hover {
+	color: #fff;
+}
+
+.navbar .nav .dropdown-toggle .caret,.navbar .nav .open.dropdown .caret
+	{
+	border-top-color: #333;
+}
+
+.navbar .nav .dropdown-menu li:hover {
+	background-color: #ccc;
+}
+
+/** 
+ ** Template/Page Styles 
+ **/
+#component {
+	position: fixed;
+	top: 4em;
+	left: 50%;
+	height: auto;
+	width: auto;
+	margin: 0 auto;
+}
+
+#component .system-alert {
+	-webkit-box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+	box-shadow: 0px 2px 10px rgba(50, 50, 50, 0.5);
+}
+
+#wizard {
+	overflow: hidden;
+	position: relative;
+}
+
+#wizard .items {
+	width: 20000em;
+	clear: both;
+	position: absolute;
+}
+
+#wizard .page {
+	padding: 20px 30px;
+	width: 500px;
+	float: left;
+}
+
+#drawer {
+	overflow: visible;
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+
+/* ==========================================================================
+   Modules
+   ========================================================================== */
+#version {
+	position: absolute;
+	width: auto;
+	left: 3.95%;
+	top: 75%;
+}
+
+#version .label-info {
+	background-color: #49AFCD;
+}  /**#2A6FBF **/
+#connexion .menu-dropdown,.menu-dropdown {
+	max-width: 255px;
+}
+
+#connexion #signin input {
+	margin-bottom: 10px;
+}
+
+#signin input,#signin p.remember {
+	margin-left: 10px;
+}
+
+#brandtext h1 {
+	font-size: 2.6em;
+	margin-bottom: 7px;
+	min-width: 20.58em;
+	text-align: center;
+}
+
+#brandtext p {
+	text-align: center;
+	margin-top: 10px;
+	font-size: 1.4em;
+}
+
+#brandtext p span {
+	color: #46A546; /** #0064CD **/
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+#brandtext img {
+	padding-left: 18%;
+}
+
+#about h2 {
+	width: 100%;
+	color: #333; /** #57A957**/
+	border-radius: 5px;
+	/**border-top: 2px solid #49AFCD;**/
+	margin-bottom: 0.3em;
+}
+
+#about img {
+	width: 7.813em;
+	margin: 0 auto;
+}
+
+#about p {
+	text-align: justify;
+}
+
+#about .span5 {
+	width: 50%;
+}
+
+#about .wrapper {
+	width: 100%;
+	padding-left: 10%;
+}
+
+#socialsub {
+	width: auto;
+	margin: 0px auto;
+	padding-left: 7em;
+}
+
+#socialsub p {
+	padding: 0.3em;
+}
+
+#socialsub p:hover {
+	background: #eee;
+}
+
+#category .span2 {
+	margin: 5px 5px 5px 0px;
+}
+
+.no-see {
+	display: none;
+}
+
+.well {
+	padding: 3px;
+	margin-bottom: 10px;
+}
+
+footer {
+	position: fixed;
+	bottom: 0px;
+	margin: 0.5em 0 2em 0;
+}
+
+footer span {
+	font-style: italic;
+}
+
+/*==========
+ * Timeline
+ *==========
+ */
+#timeline-content {
+	border: 1px solid #ddd;
+	border-radius: 7px 0px 0px 7px;
+	padding: 0.7em;
+}
+
+.tab-title {
+	
+}
+
+.item-tips {
+	margin-bottom: 0.3em;
+	padding: 0.5em;
+	border: 1px solid #eee;
+	cursor: pointer;
+}
+
+.item-tips ::selection {
+	background-color: #32749D;
+	color: white;
+}
+
+.item-tips .help-block {
+	margin-left: 3.5em;
+	margin-top: 2em;
+}
+
+.item-tips-header {
+	
+}
+
+.item-tips-image {
+	float: left;
+}
+
+.item-tips-content {
+	font-size: 0.88em;
+	padding-left: 50px;
+	text-align: justify;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+	word-wrap: break-word;
+}
+
+.item-tips-userinfo {
+	float: left;
+}
+
+.item-tips-userinfo span {
+	color: #08C;
+	font-weight: normal;
+}
+
+.item-tips-userinfo a:hover,.item-tips-userinfo a:focus {
+	border-bottom: solid 1px #ccc;
+}
+
+/**
+ * ==========
+ * Tools Bar
+ * ==========
+**/
+.item-tips-tools {
+	float: right;
+}
+
+.item-tips-tools .dropdown-menu {
+	left: -10.5em;
+}
+
+.item-tips-tools .dropdown-menu li {
+	cursor: default;
+}
+
+.item-tips-tools .dropdown-menu i {
+	cursor: pointer;
+}
+
+.item-tips-tools .dropdown-menu span {
+	color: #333;
+	font-weight: normal;
+	padding: 0 1em 0 0.5em;
+}
+
+#share-tips input {
+	height: 2.5em;
+}
+
+#share-tips button {
+	width: 7em;
+	height: 3.09em;
+}
+
+#share-tips .input-xlarge {
+	width: 370px;
+}
+
+.bloc {
+	margin-bottom: 5px;
+	padding: 8px;
+	border: 1px solid #eee;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+	overflow: visible;
+}
+
+.photo {
+	float: left;
+	width: 120px;
+	height: 90px;
+	overflow: hidden;
+	margin-right: 15px;
+}
+
+.item {
+	text-align: justify;
+	padding-right: 10px;
+	background-color: #FAFAFA;
+}
+
+.item h3 {
+	margin: 0;
+	padding: 0 0 5px 0;
+}
+
+.infos {
+	float: left;
+	margin-left: 15px;
+	/**width:200px;**/
+	font-size: 11px;
+	color: gray;
+}
+
+.infos div {
+	color: #333;
+	font-weight: 700;
+	font-size: 16px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+.previous {
+	float: left;
+}
+
+.next {
+	float: right;
+}
+
+.left {
+	float: left
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+/* ==========================================================================
+   Mobile Styles
+   ========================================================================== */
+@media only screen and (min-width: 800px) {
+	#brandtext img {
+		max-width: 70%;
+	}
+	#brandtext h1 {
+		max-width: 14em;
+	}
+}
+
+@media only screen and (max-device-width: 480px) {
+	body,html {
+		padding-top: 0px;
+		margin-top: 0px;
+		max-width: 500px;
+		_width: 500px;
+		border-radius: 4px;
+		margin: 0 auto;
+		box-shadow: 0 1px 10px #a7a7a7, inset 0 1px 0 #fff;
+	}
+	img {
+		max-width: 200px;
+	}
+	h3 {
+		font-size: 1.1em;
+	}
+	#brandtext h1 {
+		font-size: 1.7em;
+		min-width: 10em;
+	}
+	#brandpage #version {
+		position: relative;
+		top: -15.7em;
+		left: 22%;
+	}
+	#about h2 {
+		font-size: 1.5em;
+	}
+	#about .span4 {
+		float: left;
+	}
+	#about .span4 img {
+		width: 4em;
+	}
+	#recaptcha_area,#recaptcha_table {
+		max-width: 200px !important;
+	}
+	#recaptcha_image {
+		width: 250px;
+	}
+	#socialsub {
+		display: none;
+	}
+	.container {
+		width: 100%;
+		margin-left: -1.2em;
+	}
+	.navbar-inner {
+		background: none;
+	}
+	.navbar .container {
+		width: auto;
+		padding-left: 3em;
+	}
+	.navbar .nav li a:focus,.navbar .nav li a:hover {
+		color: #CCC;
+	}
+	.form-horizontal .help-block {
+		font-size: 0.97em;
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+	/* iPhone 4g styles in here */
+	#about .wrapper {
+		
+	}
+	.row-fluid [class *="span"] {
+		
+	}
+	#about h2 {
+		font-size: 1.5em;
+	}
+}
+
+/* Following Android targeting from:
+http://developer.android.com/guide/webapps/targeting.html
+http://pugetworks.com/2011/04/css-media-queries-for-targeting-different-mobile-devices/ ; */
+@media only screen and (-webkit-device-pixel-ratio:.75) {
+	/* CSS for low density (ldpi) Android layouts in here */
+}
+
+@media only screen and (-webkit-device-pixel-ratio:1) {
+	/* CSS for medium density (mdpi) Android layouts in here */
+}
+
+@media only screen and (-webkit-device-pixel-ratio:1.5) {
+	/* CSS for high density (hdpi) Android layouts in here */
+}
