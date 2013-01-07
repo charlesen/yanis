@@ -28,8 +28,4 @@ define ( 'LANG_FOLDER', YANIS_PATH . '/system/languages' );
 
 // Environnement Variables
 define ( 'DEVELOPMENT_ENVIRONMENT', true );
-
-// Password hash processing.
-define ( "PRE_HASH", "d2d87ff87fbc137b0c0b7e81d97b4f9e" );
-define ( "POST_HASH", "e6555b063e211df82afd7c0a8fbc512d" );
 ?>
