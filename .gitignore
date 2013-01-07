@@ -13,3 +13,7 @@
 /.buildpath
 /system/languages/en/app.php
 /system/languages/fr/app.php
+/hack.txt
+/controller_abstract.txt
+/model_abstract.txt
+/json.php
