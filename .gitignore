@@ -5,3 +5,11 @@
 /modules
 /templates
 /.settings
+/hack.txt
+/controller_abstract.txt
+/debug.php
+/json.php
+/model_abstract.txt
+/.buildpath
+/system/languages/en/app.php
+/system/languages/fr/app.php
