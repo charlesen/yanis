@@ -1,0 +1,378 @@
+﻿<?php
+/**
+ * Enter description here...
+ *
+ */
+abstract class ZN_Model_Model
+{
+    /**
+     * 
+     * @var Zend_Log
+     */
+    protected $_tracer;
+    /**
+     * 
+     * @var Zend_Log
+     */
+    protected $_logger;
+    /**
+     * Interface base de donn�e
+     *
+     * @var Zend_Db_Adapter_Abstract
+     */
+    protected $_db;
+    /**
+     * Session
+     *
+     * @var Zend_Session_Namespace
+     */
+    protected $_session;
+    /**
+     * Fichier de configuration
+     *
+     * @var Zend_Config_Ini
+     */
+    protected $_config;
+    /**
+     * Search path by default same as controller
+     * Render your data as xml, json ...
+     *
+     * @var Zend_View
+     */
+    public $view;
+    /**
+     * Cache
+     *
+     * @var Zend_Cache
+     */
+    protected $_cache ;
+    /**
+     * 
+     * @var Zend_Translate
+     */
+    protected $_translate;
+    /**
+     * 
+     * @var Zend_Auth
+     */
+    protected $_auth;
+    /**
+     * EntityManager
+     *
+     * @var \Doctrine\Orm\EntityManager
+     */
+    protected $_entity_manager = null;
+    /**
+	 * @return the $_tracer
+	 */
+	protected function getTracer() {
+
+		return $this->_tracer;
+	}
+
+	/**
+	 * @return the $_logger
+	 */
+	protected function getLogger() {
+
+		return $this->_logger;
+	}
+
+	/**
+	 * @return the $_db
+	 */
+	protected function getDb() {
+
+		return $this->_db;
+	}
+
+	/**
+	 * @return the $_session
+	 */
+	protected function getSession() {
+
+		return $this->_session;
+	}
+
+	/**
+	 * @return the $_config
+	 */
+	protected function getConfig() {
+
+		return $this->_config;
+	}
+
+	/**
+	 * @return the $view
+	 */
+	protected function getView() {
+
+		return $this->view;
+	}
+
+	/**
+	 * @return the $_cache
+	 */
+	protected function getCache() {
+
+		return $this->_cache;
+	}
+
+	/**
+	 * @return the $_translate
+	 */
+	protected function getTranslate() {
+
+		return $this->_translate;
+	}
+
+	/**
+	 * @return the $_auth
+	 */
+	protected function getAuth() {
+
+		return $this->_auth;
+	}
+
+	/**
+	 * @return the $_entity_manager
+	 */
+	protected function getEntity_manager() {
+
+		return $this->_entity_manager;
+	}
+
+	/**
+	 * @param Zend_Log $_tracer
+	 */
+	protected function setTracer($_tracer) {
+
+		$this->_tracer = $_tracer;
+	}
+
+	/**
+	 * @param Zend_Log $_logger
+	 */
+	protected function setLogger($_logger) {
+
+		$this->_logger = $_logger;
+	}
+
+	/**
+	 * @param Zend_Db_Adapter_Abstract $_db
+	 */
+	protected function setDb($_db) {
+
+		$this->_db = $_db;
+	}
+
+	/**
+	 * @param Zend_Session_Namespace $_session
+	 */
+	protected function setSession($_session) {
+
+		$this->_session = $_session;
+	}
+
+	/**
+	 * @param Zend_Config_Ini $_config
+	 */
+	protected function setConfig($_config) {
+
+		$this->_config = $_config;
+	}
+
+	/**
+	 * @param Zend_View $view
+	 */
+	protected function setView($view) {
+
+		$this->view = $view;
+	}
+
+	/**
+	 * @param Zend_Cache $_cache
+	 */
+	protected function setCache($_cache) {
+
+		$this->_cache = $_cache;
+	}
+
+	/**
+	 * @param Zend_Translate $_translate
+	 */
+	protected function setTranslate($_translate) {
+
+		$this->_translate = $_translate;
+	}
+
+	/**
+	 * @param Zend_Auth $_auth
+	 */
+	protected function setAuth($_auth) {
+
+		$this->_auth = $_auth;
+	}
+
+	/**
+	 * @param EntityManager $_entity_manager
+	 */
+	protected function setEntity_manager($_entity_manager) {
+
+		$this->_entity_manager = $_entity_manager;
+	}
+
+	public function __construct ()
+    {
+        try {
+            if (Zend_Registry::isRegistered("session")) {
+                $session = Zend_Registry::get("session");
+                $this->_session = $session;
+            }
+            if (Zend_Registry::isRegistered("auth")) {
+                $auth = Zend_Registry::get("auth");
+                $this->_auth = $auth;
+            }
+            if (Zend_Registry::isRegistered("logger")) {
+                $logger = Zend_Registry::get("logger");
+                $this->_logger = $logger;
+            }
+            if (Zend_Registry::isRegistered("config")) {
+                $config = Zend_Registry::get("config");
+                $this->_config = $config;
+            }
+            if (Zend_Registry::isRegistered("db")) {
+                $db = Zend_Registry::get("db");
+                $this->_db = $db;
+            }
+            if (Zend_Registry::isRegistered("tracer")) {
+                $tracer = Zend_Registry::get("tracer");
+                $this->_tracer = $tracer;
+            }
+            if (Zend_Registry::isRegistered("EntityManager")) {
+                $EntityManager = Zend_Registry::get("EntityManager");
+                $this->_entity_manager = $EntityManager;
+            }
+            if (Zend_Registry::isRegistered("translate")) {
+                $translate = Zend_Registry::get("translate");
+                $this->_translate = $translate;
+            }
+            if (Zend_Registry::isRegistered("cache")) {
+                $cache = Zend_Registry::get("cache");
+                $this->_cache = $cache;                
+            }
+            $this->initView();
+          
+        } catch (Exception $error) {}
+    }
+    private function initView ()
+    {
+        Zend_Loader::loadClass('Zend_View');
+        $this->view = new ZN_Model_View(array("translate" => $this->_translate));
+        $this->view->addScriptPath(ROOT . '/app/ShareViews/');
+        $this->view->addHelperPath(ROOT . '/app/ViewsHelpers', 'Ma_View_Helper');
+        $this->view->addHelperPath('Zend/Dojo/View/Helper/', 'Zend_Dojo_View_Helper');
+    }
+    protected function getSimpleLib ($table, $rowvalue, $lang = null)
+    {
+        if ($lang == null)
+            $lang = $this->_session->locale;
+        try {
+            if (in_array($table, $this->getListTables()) && is_numeric($rowvalue)) {
+                $strSQL = "
+	              SELECT   
+	              CASE WHEN tt.value is null THEN tor.libelle
+	              ELSE tt.value
+	              END  as value,
+	              tor.libelle as key 
+	              FROM " . $table . " tor
+	              LEFT OUTER JOIN translations tt on tor.id = tt.ref_num AND tt.lang = ? AND table_name = ? 
+	              WHERE tor.id = ?
+	              ";
+                $statement = $this->_db->prepare($strSQL);
+                $statement->execute(array($lang , $table , $rowvalue));
+                return $statement->fetchColumn(0);
+            }
+            return null;
+        } catch (Exception $error) {
+            new ZN_Exception($error);
+            return false;
+        }
+    }
+    protected function getLibForEnum ($rowField, $lang = null)
+    {
+        try {
+            if ($lang == null)
+                $lang = $this->_session->locale;
+            $idList = array();
+            if ($rowField["type"] == "ENUMMULTI") {
+                $idList = explode(",", $rowField["value"]);
+            } else {
+                if ($rowField["type"] == "ENUM") {
+                    $idList[] = $rowField["value"];
+                }
+            }
+            $finalString = "";
+            // Vérifier que la table en question existe
+            if (in_array($rowField["table_ref"], $this->getListTables())) {
+                for ($i = 0; $i < sizeof($idList); $i ++) {
+                    if (trim($rowField["value"]) == "" || ! is_numeric($rowField["value"]))
+                        continue;
+                    $strSQL = "
+	              SELECT   
+	              CASE WHEN tt.value is null THEN tor.libelle
+	              ELSE tt.value
+	              END  as value,
+	              tor.libelle as key 
+	              FROM " . $rowField["table_ref"] . " tor
+	              LEFT OUTER JOIN translations tt on tor.id = tt.ref_num AND tt.lang = ? AND table_name = ? 
+	              WHERE tor.id = ?
+	              ";
+                    $statement = $this->_db->prepare($strSQL);
+                    $statement->execute(array($lang , $rowField["table_ref"] , $rowField["value"]));
+                    $results = $statement->fetchAll();
+                    if (sizeof($results) > 0) {
+                        $finalString = ! empty($finalString) ? $finalString . ", " : "";
+                        $finalString .= $results[0]["value"];
+                    }
+                }
+                return $finalString;
+            } else {
+                return $rowField["value"];
+            }
+        } catch (Exception $error) {
+            new ZN_Exception($error);
+            return false;
+        }
+    }
+    private $dbtables = null;
+    public function getListTables ()
+    {
+        if ($this->_cache) {
+            $cacheTags = array("table" , "database");
+            if (! ($data = $this->_cache->load("dbtables"))) {
+                $data = $this->_db->listTables();
+                $this->_cache->save($data, "dbtables", $cacheTags);
+            }
+            return $data;
+        } else {
+            if ($this->dbtables === null) {
+                $this->dbtables = $this->_db->listTables();
+            }
+            return $this->dbtables;
+        }
+    }
+    public function isavailable ($value, $againstColumn, $intable)
+    {
+        try {
+            $strSQL = "SELECT count(*) FROM $intable WHERE $againstColumn = ?";
+            $statement = $this->_db->prepare($strSQL);
+            $statement->execute(array($value));
+            $row = $statement->fetch();
+            return $row ? ($row["count"] > 0 ? false : true) : false;
+        } catch (Exception $error) {
+            new ZN_Exception($error);
+            return false;
+        }
+    }
+}

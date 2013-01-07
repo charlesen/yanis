@@ -1,0 +1,250 @@
+﻿<?php
+class ZN_Model_Controller extends Zend_Controller_Action {
+	static $int = 0;
+	/**
+	 * session
+	 *
+	 * @var Zend_Session_Namespace
+	 */
+	protected $_session = null;
+	/**
+	 * authentification
+	 *
+	 * @var Zend_Auth
+	 */
+	protected $_auth = null;
+	/**
+	 * loggueur
+	 *
+	 * @var Zend_Log
+	 */
+	protected $_logger = null;
+	/**
+	 * tracer
+	 *
+	 * @var Zend_Log
+	 */
+	protected $_tracer = null;
+	/**
+	 * configuration
+	 *
+	 * @var Zend_Config_Ini
+	 */
+	protected $_config = null;
+	/**
+	 * Cache
+	 *
+	 * @var Zend_Cache
+	 */
+	protected $_cache = null;
+	/**
+	 * Base de donn�e
+	 *
+	 * @var Zend_Db_Adapter_Abstract
+	 */
+	protected $_db = null;
+	/**
+	 * Traduction
+	 *
+	 * @var Zend_Translate
+	 */
+	protected $_translate = null;
+	/**
+	 * EntityManager
+	 *
+	 * @var \Doctrine\Orm\EntityManager
+	 */
+	protected $_entity_manager = null;
+
+	/**
+	 * @return the $_session
+	 */
+	protected function getSession() {
+
+		return $this->_session;
+	}
+
+	/**
+	 * @return the $_auth
+	 */
+	protected function getAuth() {
+
+		return $this->_auth;
+	}
+
+	/**
+	 * @return the $_logger
+	 */
+	protected function getLogger() {
+
+		return $this->_logger;
+	}
+
+	/**
+	 * @return the $_tracer
+	 */
+	protected function getTracer() {
+
+		return $this->_tracer;
+	}
+
+	/**
+	 * @return the $_config
+	 */
+	protected function getConfig() {
+
+		return $this->_config;
+	}
+
+	/**
+	 * @return the $_cache
+	 */
+	protected function getCache() {
+
+		return $this->_cache;
+	}
+
+	/**
+	 * @return the $_db
+	 */
+	protected function getDb() {
+
+		return $this->_db;
+	}
+
+	/**
+	 * @return the $_translate
+	 */
+	protected function getTranslate() {
+
+		return $this->_translate;
+	}
+
+	/**
+	 * @return the $_entity_manager
+	 */
+	protected function getEntity_manager() {
+
+		return $this->_entity_manager;
+	}
+
+	/**
+	 * @param Zend_Session_Namespace $_session
+	 */
+	protected function setSession($_session) {
+
+		$this->_session = $_session;
+	}
+
+	/**
+	 * @param Zend_Auth $_auth
+	 */
+	protected function setAuth($_auth) {
+
+		$this->_auth = $_auth;
+	}
+
+	/**
+	 * @param Zend_Log $_logger
+	 */
+	protected function setLogger($_logger) {
+
+		$this->_logger = $_logger;
+	}
+
+	/**
+	 * @param Zend_Log $_tracer
+	 */
+	protected function setTracer($_tracer) {
+
+		$this->_tracer = $_tracer;
+	}
+
+	/**
+	 * @param Zend_Config_Ini $_config
+	 */
+	protected function setConfig($_config) {
+
+		$this->_config = $_config;
+	}
+
+	/**
+	 * @param Zend_Cache $_cache
+	 */
+	protected function setCache($_cache) {
+
+		$this->_cache = $_cache;
+	}
+
+	/**
+	 * @param Zend_Db_Adapter_Abstract $_db
+	 */
+	protected function setDb($_db) {
+
+		$this->_db = $_db;
+	}
+
+	/**
+	 * @param Zend_Translate $_translate
+	 */
+	protected function setTranslate($_translate) {
+
+		$this->_translate = $_translate;
+	}
+
+	public function __construct(Zend_Controller_Request_Abstract $request, Zend_Controller_Response_Abstract $response, array $args = array()) {
+
+		parent::__construct ( $request, $response, $args );
+		$this->_redirector = $this->_helper->getHelper ( 'Redirector' );
+		$this->_redirector->setPrependBase ( false );
+		$this->_redirector->setExit ( true );
+		if (Zend_Registry::isRegistered ( "session" )) {
+			$session = Zend_Registry::get ( "session" );
+			$this->_session = $session;
+		}
+		if (Zend_Registry::isRegistered ( "config" )) {
+			$config = Zend_Registry::get ( "config" );
+			$this->_config = $config;
+		}
+		if (Zend_Registry::isRegistered ( "db" )) {
+			$db = Zend_Registry::get ( "db" );
+			$this->_db = $db;
+		}
+		if (Zend_Registry::isRegistered ( "EntityManager" )) {
+			$EntityManager = Zend_Registry::get ( "EntityManager" );
+			$this->_entity_manager = $EntityManager;
+		}
+		if (Zend_Registry::isRegistered ( "auth" )) {
+			$auth = Zend_Registry::get ( "auth" );
+			$this->_auth = $auth;
+		}
+		if (Zend_Registry::isRegistered ( "logger" )) {
+			$logger = Zend_Registry::get ( "logger" );
+			$this->_logger = $logger;
+		}
+		if (Zend_Registry::isRegistered ( "tracer" )) {
+			$tracer = Zend_Registry::get ( "tracer" );
+			$this->_tracer = $tracer;
+		}
+		if (Zend_Registry::isRegistered ( "translate" )) {
+			$translate = Zend_Registry::get ( "translate" );
+			$this->_translate = $translate;
+		}
+		if (Zend_Registry::isRegistered ( "cache" )) {
+			$cache = Zend_Registry::get ( "cache" );
+			$this->_cache = $cache;
+		}
+	}
+
+	/**
+	 * 
+	 * Check if an url exists
+	 * @param unknown_type $uri
+	 */
+	public function uriexist($uri) {
+
+		require_once ROOT . '/app/Modules/api/models/rest.php';
+		$rest = new rest ();
+		return $rest->uriexist ( $uri );
+	}
+}
