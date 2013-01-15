@@ -6,6 +6,9 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 require_once 'Zend/Mobile/Push/Apns.php';
 require_once 'Zend/Mobile/Push/C2dm.php';
 require_once 'Zend/Gdata/ClientLogin.php';

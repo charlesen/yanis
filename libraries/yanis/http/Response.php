@@ -6,6 +6,8 @@
  * @license Released under the MIT License.
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
 
 /**
  * Class Response

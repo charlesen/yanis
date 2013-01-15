@@ -6,6 +6,9 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 require_once 'Zend/Translate.php';
 
 /** 
@@ -60,6 +63,7 @@ class Yanis_Translate {
 	 * @param String $lang
 	 */
 	function __construct() {
+		//@todo : constructeur avec arguments (type
 		$locale = new Zend_Locale ();
 		$lang = $locale->getLanguage ();
 		

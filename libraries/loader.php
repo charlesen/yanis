@@ -1,8 +1,13 @@
 <?php
+
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 // Start app session
 //session_start ();
 //
 //Zend_Session::start();
+
 
 include_once YANIS_PATH . '/libraries/define.php';
 
@@ -25,7 +30,7 @@ require_once 'Zend/Loader/Autoloader/Resource.php';
 require_once 'Zend/Session.php';
 
 // Start app session
-Zend_Session::start();
+Zend_Session::start ();
 
 // Yanis Registry
 require_once YANIS_PATH . '/libraries/yanis/registry/Registry.php';

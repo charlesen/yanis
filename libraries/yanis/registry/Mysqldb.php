@@ -6,13 +6,16 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 /**
  * Database Management
  * 
  * Classe Mysqldb
  *
  */
-class Mysqldb {
+class Mysqldb extends PDO {
 	
 	/**
 	 * Multiple database connections are possible
@@ -160,8 +163,6 @@ class Mysqldb {
 			$result [] = $this->_lastQuery->fetch_array ( MYSQLI_ASSOC );
 		}
 		array_pop ( $result ); // Last element is empty, so unusable.
-		
-
 		return $result;
 	}
 	
@@ -305,7 +306,7 @@ class Mysqldb {
 	
 	/**
 	 * Distroy the object
-	 * Close  the database connections
+	 * Close database connection
 	 */
 	public function __destruct() {
 		$this->_mysqli->close ();

@@ -6,7 +6,13 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 require_once 'Zend/Session.php';
+
+// @see https://github.com/raymondjavaxx/php5-browserid/blob/master/libraries/browserid/Verifier.php
+require_once 'browserid/Verifier.php';
 
 /**
  * Class Authentication

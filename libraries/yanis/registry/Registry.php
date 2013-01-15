@@ -6,6 +6,9 @@
  * @author Charles EDOU NZE
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 /**
  * Classe Registry
  */

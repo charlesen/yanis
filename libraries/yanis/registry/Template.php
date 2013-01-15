@@ -6,6 +6,9 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 /**
  * Class Template
  * @author Charles EDOU NZE

@@ -5,13 +5,23 @@
  * @license Released under the MIT License.
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
+
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 require_once 'Zend/Search/Lucene.php';
 
 /** Class Search 
  * @author Charles E. NZE
  */
 class Search extends Zend_Search_Lucene_Document {
-	function __construct($doc) {
+	/**
+	 * Where to save index
+	 * @var String
+	 */
+	private $_indexPath;
+	
+	function __construct($document) {
 		$this->addField ( Zend_Search_Lucene_Field::Keyword ( 'document_id', $document->id ) );
 		$this->addField ( Zend_Search_Lucene_Field::UnIndexed ( 'url', $document->url ) );
 		$this->addField ( Zend_Search_Lucene_Field::UnIndexed ( 'created', $document->created ) );

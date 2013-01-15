@@ -6,6 +6,9 @@
  * @author Charles EDOU NZE <charles at charlesen.fr>
  */
 
+// no direct access
+defined ( 'YANIS_EXEC' ) or die ( 'Restricted access' );
+
 yimport ( 'registry.Mysqldb' );
 
 /** 
@@ -18,9 +21,6 @@ class Model extends Mysqldb {
 	
 	}
 	
-	/**
-	 * Nothing to see here ...
-	 */
 	function __destruct() {
 	
 	}
